@@ -1,0 +1,8 @@
+DROP DATABASE IF EXISTS cars;
+DROP USER IF EXISTS cars_user;
+
+USE mysql;
+CREATE DATABASE cars DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE USER 'cars_user'@'%' IDENTIFIED BY 'pass';
+GRANT ALL ON cars.* TO 'cars_user'@'%';
+FLUSH PRIVILEGES;
