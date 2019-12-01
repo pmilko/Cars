@@ -16,9 +16,9 @@ public interface QuestionRepository extends PagingAndSortingRepository<Question,
     @Query("select q from Question q left join fetch q.user u left join fetch q.answers a left join fetch a.user where q.id = ?1 order by q.createdOn")
     Optional<Question> findWithAnswers(Long id);
 
-    @Query("select new katlasik.board.dtos.QuestionView(q.id, q.title, size(a)) from Question q left join q.answers a group by q.id, q.title order by q.createdOn desc ")
+    @Query("select new com.cars.myApps.dtos.QuestionView(q.id, q.title, size(a)) from Question q left join q.answers a group by q.id, q.title order by q.createdOn desc ")
     List<QuestionView> findQuestionViews();
 
-    @Query("select new katlasik.board.dtos.QuestionView(q.id, q.title, size(a)) from Question q left join q.answers a where q.user.id = ?1 group by q.id, q.title order by q.createdOn desc ")
+    @Query("select new com.cars.myApps.dtos.QuestionView(q.id, q.title, size(a)) from Question q left join q.answers a where q.user.id = ?1 group by q.id, q.title order by q.createdOn desc ")
     List<QuestionView> findQuestionViewsById(long usedId);
 }
